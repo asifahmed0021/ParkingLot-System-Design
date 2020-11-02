@@ -5,90 +5,9 @@ import java.util.Map;
 
 public class ParkingLot {
     private String zipCode;
-    private HashMap<String,Gate> entryGates;
-    private HashMap<String,Gate> exitGates;
-    private HashMap<String,ParkingFloor> parkingFloors;
-    private HashMap<String,Ticket> tickets;
-
-    public void addFloor(ParkingFloor floor){
-        this.parkingFloors.put(floor.id,floor);
-    }
-    public void addEntryGate(Gate gate){
-        this.entryGates.put(gate.id,gate);
-    }
-    public void addExitGate(Gate gate){
-        this.exitGates.put(gate.id,gate);
-    }
-    public void removeFloor(ParkingFloor floor){
-        this.parkingFloors.remove(floor.id);
-    }
-    public void removeEntryGate(Gate gate){
-        this.entryGates.remove(gate.id);
-    }
-    public void removeExitGate(Gate gate){
-        this.exitGates.remove(gate.id);
-    }
-    public Ticket assignTicket(Vehicle vehicle){
-        Ticket ticket =null;
-        //This function contains whole logic that how we want to assign a parking spot
-        //from all the available parking spots.
-        outerloop:
-        for(Map.Entry<String,ParkingFloor> floor : parkingFloors.entrySet()){
-            switch (vehicle.type){
-                case SMALL: {
-                    if(floor.getValue().freeSmall>0){
-                        ticket=floor.getValue().assignVehicle(vehicle,Type.SMALL);
-                        break outerloop;
-                    }
-                }
-                case MEDIUM:{
-                    if(floor.getValue().freeMedium>0){
-                        ticket=floor.getValue().assignVehicle(vehicle,Type.MEDIUM);
-                        break outerloop;
-                    }
-                }
-                case LARGE:{
-                    if(floor.getValue().freeLarge>0){
-                        ticket=floor.getValue().assignVehicle(vehicle,Type.LARGE);
-                        break outerloop;
-                    }
-                }
-                case XLARGE:{
-                    if(floor.getValue().freeXlarge>0){
-                        ticket=floor.getValue().assignVehicle(vehicle,Type.XLARGE);
-                        break outerloop;
-                    }
-                }
-                ticket.floor=floor.getValue();
-            }
-        }
-        this.tickets.put(ticket.id,ticket);
-        return ticket;
-    }
-
-    public Ticket giveExitTicket(Ticket ticket){
-        ticket.floor.parkingSpots.get(ticket.spot).isFree=true;
-        switch (ticket.vehicle.type){
-            case SMALL:{
-                ticket.floor.freeSmall=ticket.floor.freeSmall+1;
-            }
-            case MEDIUM:{
-                ticket.floor.freeMedium=ticket.floor.freeMedium+1;
-            }
-            case LARGE:{
-                ticket.floor.freeLarge=ticket.floor.freeLarge+1;
-            }
-            case XLARGE:{
-                ticket.floor.freeXlarge=ticket.floor.freeXlarge+1;
-            }
-        }
-        ticket.floor.parkingSpots.put(ticket.floor.parkingSpots.get(ticket.spot).id,ticket.floor.parkingSpots.get(ticket.spot));
-        Ticket exitTicket=ticket;
-        exitTicket.exittimestamp=new Timestamp(System.currentTimeMillis()).getTime();
-        exitTicket.cost=(int)((exitTicket.exittimestamp-exitTicket.entrytimestamp)/(1000*60));
-        exitTicket.exitTime=LocalDateTime.now();
-        this.tickets.put(exitTicket.id,exitTicket);
-        return exitTicket;
-    }
+    public static HashMap<String,Gate> entryGates;
+    public static HashMap<String,Gate> exitGates;
+    public static HashMap<String,ParkingFloor> parkingFloors;
+    public static HashMap<String,Ticket> tickets;
 
 }

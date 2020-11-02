@@ -39,39 +39,6 @@ public class ParkingFloor {
 
     }
 
-    public void addParkingSpot(ParkingSpot parkingSpot){
-        this.parkingSpots.put(parkingSpot.id,parkingSpot);
-        switch(parkingSpot.spotType){
-            case SMALL:{
-                this.totalSmall=this.totalSmall+1;
-            }
-            case MEDIUM:{
-                this.totalMedium=this.totalMedium+1;
-            }
-            case LARGE:{
-                this.totalLarge=this.totalLarge+1;
-            }
-            case XLARGE:{
-                this.totalXlarge=this.totalXlarge+1;
-            }
-        }
-    }
-    public void removeParkingSpot(ParkingSpot parkingSpot){
-        this.parkingSpots.remove(parkingSpot.id);
-        switch(parkingSpot.spotType){
-            case SMALL:{
-                this.totalSmall=this.totalSmall-1;
-            }
-            case MEDIUM:{
-                this.totalMedium=this.totalMedium-1;
-            }
-            case LARGE:{
-                this.totalLarge=this.totalLarge-1;
-            }
-            case XLARGE:{
-                this.totalXlarge=this.totalXlarge-1;
-            }
-        }
-    }
+
 
 }
