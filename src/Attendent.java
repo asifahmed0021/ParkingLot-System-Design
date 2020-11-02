@@ -2,7 +2,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-public class Attendent {
+public class Attendent extends Account {
     public Ticket assignTicket(Vehicle vehicle){
         Ticket ticket =null;
         //This function contains whole logic that how we want to assign a parking spot
