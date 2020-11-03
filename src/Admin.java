@@ -1,4 +1,4 @@
-public class Admin extends Account {
+public class Admin extends Account implements IAdmin {
     public void addFloor(ParkingFloor floor){
         ParkingLot.parkingFloors.put(floor.id,floor);
     }
