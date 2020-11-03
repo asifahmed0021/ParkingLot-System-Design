@@ -7,4 +7,6 @@ public interface IAdmin {
     void removeExitGate(Gate gate);
     void addParkingSpot(ParkingFloor parkingFloor,ParkingSpot parkingSpot);
     void removeParkingSpot(ParkingFloor parkingFloor,ParkingSpot parkingSpot);
+    void addAttendent(Attendent attendent);
+    void removeAttendent(Attendent attendent);
 }

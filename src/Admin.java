@@ -17,6 +17,12 @@ public class Admin extends Account implements IAdmin {
     public void removeExitGate(Gate gate){
         ParkingLot.exitGates.remove(gate.id);
     }
+    public void addAttendent(Attendent attendent){
+        ParkingLot.attendents.put(attendent.id,attendent);
+    }
+    public void removeAttendent(Attendent attendent){
+        ParkingLot.attendents.remove(attendent.id);
+    }
     public void addParkingSpot(ParkingFloor parkingFloor,ParkingSpot parkingSpot){
         parkingFloor.parkingSpots.put(parkingSpot.id,parkingSpot);
         switch(parkingSpot.spotType){
@@ -50,5 +56,9 @@ public class Admin extends Account implements IAdmin {
                 parkingFloor.totalXlarge=parkingFloor.totalXlarge-1;
             }
         }
+    }
+
+    public void changeCost(int cost){
+        ParkingLot.cost=cost;
     }
 }

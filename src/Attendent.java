@@ -60,7 +60,7 @@ public class Attendent extends Account {
         ticket.floor.parkingSpots.put(ticket.floor.parkingSpots.get(ticket.spot).id,ticket.floor.parkingSpots.get(ticket.spot));
         Ticket exitTicket=ticket;
         exitTicket.exittimestamp=new Timestamp(System.currentTimeMillis()).getTime();
-        exitTicket.cost=(int)((exitTicket.exittimestamp-exitTicket.entrytimestamp)/(1000*60));
+        exitTicket.cost=(int)(ParkingLot.cost*(exitTicket.exittimestamp-exitTicket.entrytimestamp)/(1000*60));
         exitTicket.exitTime= LocalDateTime.now();
         ParkingLot.tickets.put(exitTicket.id,exitTicket);
         return exitTicket;
